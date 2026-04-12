@@ -3,45 +3,60 @@ import Hotel from '../models/Hotel.js';
 
 const router = Router();
 
-// GET /api/hotels
-router.get('/', async (req, res) => {
+/**
+ * GET /api/hotels/zone/:zoneId
+ * Devuelve todos los hoteles de una zona
+ */
+router.get('/zone/:zoneId', async (req, res) => {
   try {
+    const { zoneId } = req.params;
+
+    if (!zoneId) {
+      return res.status(400).json({
+        ok: false,
+        message: 'Debes enviar el zoneId'
+      });
+    }
+
     const hotels = await Hotel.findAll({
+      where: {
+        zone_id: Number(zoneId)
+      },
       order: [['name', 'ASC']]
     });
 
-    res.json({
+    return res.json({
       ok: true,
       hotels
     });
   } catch (error) {
-    console.error('Error obteniendo hoteles:', error);
-    res.status(500).json({
+    console.error('Error obteniendo hoteles por zona:', error);
+    return res.status(500).json({
       ok: false,
       message: 'Error obteniendo hoteles'
     });
   }
 });
 
-// GET /api/hotels/zone/:zoneId
-router.get('/zone/:zoneId', async (req, res) => {
+/**
+ * GET /api/hotels
+ * (opcional) lista completa
+ */
+router.get('/', async (req, res) => {
   try {
-    const { zoneId } = req.params;
-
     const hotels = await Hotel.findAll({
-      where: { zone_id: zoneId },
       order: [['name', 'ASC']]
     });
 
-    res.json({
+    return res.json({
       ok: true,
       hotels
     });
   } catch (error) {
-    console.error('Error obteniendo hoteles por zona:', error);
-    res.status(500).json({
+    console.error('Error obteniendo hoteles:', error);
+    return res.status(500).json({
       ok: false,
-      message: 'Error obteniendo hoteles por zona'
+      message: 'Error obteniendo hoteles'
     });
   }
 });

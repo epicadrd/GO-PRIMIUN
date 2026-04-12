@@ -753,6 +753,247 @@
       transform: translateY(-2px) scale(1.03);
     }
 
+    .booking-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .booking-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--brand-blue);
+      border: 1px solid var(--brand-blue-border);
+      background: var(--brand-blue-soft);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .step-chip {
+      min-width: 44px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 150, 190, 0.18);
+      background: rgba(37, 150, 190, 0.08);
+      color: var(--brand-blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .step-chip.active {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-2));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 14px 30px rgba(37, 150, 190, 0.20);
+    }
+
+    .passenger-stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(37, 150, 190, 0.12);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+      min-height: 52px;
+      width: 100%;
+    }
+
+    .passenger-stepper button {
+      width: 52px;
+      height: 52px;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      color: var(--brand-blue);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .passenger-stepper button:hover {
+      background: rgba(37, 150, 190, 0.06);
+    }
+
+    .passenger-stepper input {
+      border: none !important;
+      box-shadow: none !important;
+      text-align: center;
+      font-weight: 800;
+      background: transparent;
+      padding: 0 !important;
+    }
+
+    .trip-switches {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-height: 52px;
+    }
+
+    .trip-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .trip-check input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--brand-blue);
+    }
+
+    .form-hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .vehicle-visual-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top, rgba(37,150,190,0.10), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,249,255,0.96));
+      border: 1px solid rgba(37,150,190,0.12);
+    }
+
+    .vehicle-visual-box img {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    .vehicle-visual-meta {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .vehicle-visual-meta strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .vehicle-visual-meta span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary-badge {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(212,175,55,0.12);
+      color: #8a6a07;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid rgba(212,175,55,0.22);
+    }
+
+    .booking-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 16, 28, 0.56);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 120;
+      padding: 20px;
+    }
+
+    .booking-modal.show {
+      display: flex;
+    }
+
+    .booking-modal-card {
+      width: min(980px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,251,255,0.95));
+      border: 1px solid rgba(37, 150, 190, 0.12);
+      box-shadow: 0 30px 80px rgba(12, 33, 51, 0.24);
+    }
+
+    .booking-modal-head {
+      padding: 24px;
+      border-bottom: 1px solid rgba(37, 150, 190, 0.10);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .booking-modal-head h3 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .booking-modal-head p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .booking-modal-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(37, 150, 190, 0.14);
+      background: rgba(37,150,190,0.06);
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--brand-blue);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .booking-modal-body {
+      padding: 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .vehicle-summary-mini {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
     @media (max-width: 1100px) {
       .hero-grid,
       .booking-layout,
@@ -815,6 +1056,11 @@
 
       .price-value {
         font-size: 36px;
+      }
+
+      .booking-modal-head,
+      .booking-modal-body {
+        padding: 18px;
       }
     }
   </style>
@@ -883,7 +1129,7 @@
           </div>
 
           <div class="vehicle-showcase">
-            <div class="vehicle-icon"><img src="/img/TAHOE.png" alt="" ></div>
+            <div class="vehicle-icon"><img src="/img/TAHOE.png" alt=""></div>
 
             <div class="vehicle-copy">
               <h3>Traslados diseñados para una experiencia más exclusiva</h3>
@@ -933,7 +1179,7 @@
         <div class="service-card glass">
           <div class="service-icon">🏨</div>
           <h3>Traslados a hoteles</h3>
-          <p>Conectamos el aeropuerto con las principales zonas turísticas y hoteles de la región.</p>
+          <p>Conectamos aeropuertos, hoteles, villas y zonas clave con servicio privado premium.</p>
         </div>
 
         <div class="service-card glass">
@@ -957,77 +1203,82 @@
         <div class="form-card glass">
           <h2 class="card-title">Solicita tu traslado privado</h2>
           <p class="card-subtitle">
-            Completa tus datos y elige el destino, vehículo y tipo de viaje para consultar tu tarifa y solicitar tu traslado.
+            Completa el primer paso con tu ruta y preferencias. Luego se abrirá una ventana para terminar la reserva sin salir del diseño actual.
           </p>
 
           <form id="bookingForm">
+            <div class="booking-topbar">
+              <div class="booking-pill">Reserva en 2 pasos</div>
+
+              <div class="step-indicator">
+                <div class="step-chip active">1 · Ruta</div>
+                <div class="step-chip">2 · Detalles</div>
+              </div>
+            </div>
+
             <div class="form-grid">
               <div class="field">
-                <label for="full_name">Nombre completo</label>
-                <input type="text" id="full_name" placeholder="Ej. Nombre" required>
-              </div>
-
-              <div class="field">
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" placeholder="Ej. correo@email.com">
-              </div>
-
-              <div class="field">
-                <label for="phone">Teléfono / WhatsApp</label>
-                <input type="text" id="phone" placeholder="Ej. 8090000000" required>
-              </div>
-
-              <div class="field">
-                <label for="passengers">Cantidad de pasajeros</label>
-                <input type="number" id="passengers" min="1" placeholder="Ej. 2" required>
-              </div>
-
-              <div class="field">
-                <label for="zone_id">Zona</label>
-                <select id="zone_id" required>
-                  <option value="">Selecciona una zona</option>
+                <label for="pickup_destination_id">Lugar de recogida</label>
+                <select id="pickup_destination_id" required>
+                  <option value="">Cargando lugares de recogida...</option>
                 </select>
               </div>
 
               <div class="field">
-                <label for="hotel_id">Hotel</label>
-                <select id="hotel_id" required>
-                  <option value="">Selecciona un hotel</option>
+                <label for="dropoff_destination_id">Dirección de destino</label>
+                <select id="dropoff_destination_id" required>
+                  <option value="">Cargando destinos...</option>
                 </select>
+                <div class="form-hint">Selecciona tu lugar de recogida y tu destino final. La tarifa se calcula automáticamente según la ruta y el vehículo.</div>
               </div>
 
               <div class="field">
-                <label for="vehicle_id">Vehículo</label>
-                <select id="vehicle_id" required>
-                  <option value="">Selecciona un vehículo</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="trip_type">Tipo de viaje</label>
-                <select id="trip_type" required>
-                  <option value="one_way">Una vía</option>
-                  <option value="round_trip">Ida y vuelta</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="travel_date">Fecha del traslado</label>
+                <label for="travel_date">Fecha de recogida</label>
                 <input type="date" id="travel_date" required>
               </div>
 
               <div class="field">
-                <label for="travel_time">Hora del traslado</label>
+                <label for="travel_time">Hora de recogida</label>
                 <input type="time" id="travel_time" required>
               </div>
 
-              <div class="field full">
-                <label for="notes">Notas adicionales</label>
-                <textarea id="notes" placeholder="Equipaje, número de vuelo, observaciones, etc."></textarea>
+              <div class="field">
+                <label for="passengers">Pasajeros</label>
+                <div class="passenger-stepper">
+                  <button type="button" id="decreasePassengers">−</button>
+                  <input type="number" id="passengers" min="1" value="1" required>
+                  <button type="button" id="increasePassengers">+</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="vehicle_id">Tipo de vehículo</label>
+                <select id="vehicle_id" required>
+                  <option value="">Cargando vehículos...</option>
+                </select>
               </div>
 
               <div class="field full">
-                <button type="submit" class="btn btn-primary submit-btn">Confirmar reserva</button>
+                <label>Tipo de viaje</label>
+                <div class="trip-switches">
+                  <label class="trip-check">
+                    <input type="checkbox" id="oneWayCheck" checked>
+                    <span>Una vía</span>
+                  </label>
+
+                  <label class="trip-check">
+                    <input type="checkbox" id="roundTripCheck">
+                    <span>Ida y vuelta</span>
+                  </label>
+                </div>
+                <input type="hidden" id="trip_type" value="one_way">
+                <input type="hidden" id="zone_id">
+              </div>
+
+              <div class="field full">
+                <button type="button" class="btn btn-primary submit-btn" id="openBookingDetailsBtn">
+                  Continuar con la reserva
+                </button>
               </div>
             </div>
           </form>
@@ -1041,14 +1292,26 @@
             <div class="price-value" id="priceText">$0.00</div>
           </div>
 
+          <div class="vehicle-visual-box">
+            <img id="selectedVehicleImage" src="/img/TAHOE.png" alt="Vehículo seleccionado">
+            <div class="vehicle-visual-meta">
+              <strong id="selectedVehicleName">Vehículo no seleccionado</strong>
+              <span id="selectedVehiclePax">Selecciona un vehículo para ver su capacidad</span>
+            </div>
+          </div>
+
+          <div class="summary-badge" id="summaryDurationBadge">
+            Duración estimada: -
+          </div>
+
           <div class="summary-list">
             <div class="summary-item">
-              <span>Zona</span>
+              <span>Ruta entre zonas</span>
               <span id="summaryZone">-</span>
             </div>
             <div class="summary-item">
-              <span>Hotel</span>
-              <span id="summaryHotel">-</span>
+              <span>Ruta</span>
+              <span id="summaryDestination">-</span>
             </div>
             <div class="summary-item">
               <span>Vehículo</span>
@@ -1195,148 +1458,421 @@
     </svg>
   </a>
 
+  <div class="booking-modal" id="bookingDetailsModal">
+    <div class="booking-modal-card">
+      <div class="booking-modal-head">
+        <div>
+          <h3>Completar reserva</h3>
+          <p>
+            Verifica la ruta seleccionada y agrega tus datos de contacto para terminar la solicitud del traslado.
+          </p>
+        </div>
+
+        <button type="button" class="booking-modal-close" id="closeBookingModal">×</button>
+      </div>
+
+      <div class="booking-modal-body">
+        <div class="form-grid">
+          <div class="field">
+            <label for="full_name">Nombre completo</label>
+            <input type="text" id="full_name" placeholder="Ej. Nombre" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" placeholder="Ej. correo@email.com">
+          </div>
+
+          <div class="field">
+            <label for="phone">Teléfono / WhatsApp</label>
+            <input type="text" id="phone" placeholder="Ej. 8090000000" required>
+          </div>
+
+          <div class="field">
+            <label for="flight_number">Número de vuelo de llegada y aerolínea</label>
+            <input type="text" id="flight_number" placeholder="Ej. LA2409 / JetBlue">
+          </div>
+
+          <div class="field full">
+            <label for="notes">Notas adicionales</label>
+            <textarea id="notes" placeholder="Equipaje, silla de bebé, observaciones, servicio solicitado, etc."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="backToFormBtn">Volver</button>
+          <button type="button" class="btn btn-primary" id="submitBookingBtn">Confirmar reserva</button>
+        </div>
+
+        <div class="vehicle-summary-mini">
+          El precio y el vehículo siguen sincronizados con lo que seleccionaste en el formulario principal.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const API_BASE = 'http://localhost:3000/api';
 
-    const zones = [
-      { id: 1, name: 'Cap Cana / Punta Cana' },
-      { id: 2, name: 'Cabeza de Toro' },
-      { id: 3, name: 'Bávaro' },
-      { id: 4, name: 'Macao' },
-      { id: 5, name: 'Uvero Alto' },
-      { id: 6, name: 'Bayahibe' },
-      { id: 7, name: 'La Romana' },
-      { id: 8, name: 'Boca Chica' },
-      { id: 9, name: 'Santo Domingo' }
-    ];
-
-    const vehicles = [
-      { id: 1, name: 'Suburban SUV' },
-      { id: 2, name: 'Cadillac' },
-      { id: 3, name: 'Mini-van' },
-      { id: 4, name: 'Toyota 7-9' },
-      { id: 5, name: 'Toyota-Mercedes 9-14' },
-      { id: 6, name: 'Toyota 15-20' }
-    ];
-
-    const zoneSelect = document.getElementById('zone_id');
-    const hotelSelect = document.getElementById('hotel_id');
+    const pickupDestinationSelect = document.getElementById('pickup_destination_id');
+    const dropoffDestinationSelect = document.getElementById('dropoff_destination_id');
     const vehicleSelect = document.getElementById('vehicle_id');
-    const tripTypeSelect = document.getElementById('trip_type');
+    const tripTypeInput = document.getElementById('trip_type');
+    const zoneInput = document.getElementById('zone_id');
+
     const form = document.getElementById('bookingForm');
     const alertBox = document.getElementById('alertBox');
     const priceText = document.getElementById('priceText');
 
-    function loadZones() {
-      zones.forEach(zone => {
-        const option = document.createElement('option');
-        option.value = zone.id;
-        option.textContent = zone.name;
-        zoneSelect.appendChild(option);
-      });
+    const oneWayCheck = document.getElementById('oneWayCheck');
+    const roundTripCheck = document.getElementById('roundTripCheck');
+
+    const openBookingDetailsBtn = document.getElementById('openBookingDetailsBtn');
+    const bookingDetailsModal = document.getElementById('bookingDetailsModal');
+    const closeBookingModal = document.getElementById('closeBookingModal');
+    const backToFormBtn = document.getElementById('backToFormBtn');
+    const submitBookingBtn = document.getElementById('submitBookingBtn');
+
+    const selectedVehicleImage = document.getElementById('selectedVehicleImage');
+    const selectedVehicleName = document.getElementById('selectedVehicleName');
+    const selectedVehiclePax = document.getElementById('selectedVehiclePax');
+    const summaryDurationBadge = document.getElementById('summaryDurationBadge');
+
+    const increasePassengers = document.getElementById('increasePassengers');
+    const decreasePassengers = document.getElementById('decreasePassengers');
+    const passengersInput = document.getElementById('passengers');
+
+    const summaryZone = document.getElementById('summaryZone');
+    const summaryDestination = document.getElementById('summaryDestination');
+    const summaryVehicle = document.getElementById('summaryVehicle');
+    const summaryType = document.getElementById('summaryType');
+
+    const fallbackVehicleImage = '/img/TAHOE.png';
+
+    function setTripType(type) {
+      if (type === 'round_trip') {
+        roundTripCheck.checked = true;
+        oneWayCheck.checked = false;
+        tripTypeInput.value = 'round_trip';
+      } else {
+        oneWayCheck.checked = true;
+        roundTripCheck.checked = false;
+        tripTypeInput.value = 'one_way';
+      }
+
+      updateSummary();
+      getPrice();
     }
 
-    function loadVehicles() {
-      vehicles.forEach(vehicle => {
-        const option = document.createElement('option');
-        option.value = vehicle.id;
-        option.textContent = vehicle.name;
-        vehicleSelect.appendChild(option);
-      });
-    }
+    oneWayCheck.addEventListener('change', () => {
+      if (oneWayCheck.checked) {
+        setTripType('one_way');
+      } else if (!roundTripCheck.checked) {
+        oneWayCheck.checked = true;
+      }
+    });
 
-    async function loadHotelsByZone(zoneId) {
-      hotelSelect.innerHTML = '<option value="">Cargando hoteles...</option>';
+    roundTripCheck.addEventListener('change', () => {
+      if (roundTripCheck.checked) {
+        setTripType('round_trip');
+      } else if (!oneWayCheck.checked) {
+        roundTripCheck.checked = true;
+      }
+    });
 
+    increasePassengers.addEventListener('click', () => {
+      passengersInput.value = Number(passengersInput.value || 1) + 1;
+    });
+
+    decreasePassengers.addEventListener('click', () => {
+      const current = Number(passengersInput.value || 1);
+      passengersInput.value = current > 1 ? current - 1 : 1;
+    });
+
+    async function loadDestinations() {
       try {
-        const res = await fetch(`${API_BASE}/hotels/zone/${zoneId}`);
+        const res = await fetch(`${API_BASE}/destinations/grouped`);
         const data = await res.json();
 
-        hotelSelect.innerHTML = '<option value="">Selecciona un hotel</option>';
+        if (!data.ok) {
+          pickupDestinationSelect.innerHTML = '<option value="">No se pudieron cargar los lugares</option>';
+          dropoffDestinationSelect.innerHTML = '<option value="">No se pudieron cargar los destinos</option>';
+          return;
+        }
 
-        data.hotels.forEach(hotel => {
-          const option = document.createElement('option');
-          option.value = hotel.id;
-          option.textContent = hotel.name;
-          hotelSelect.appendChild(option);
+        pickupDestinationSelect.innerHTML = '<option value="">Selecciona lugar de recogida</option>';
+        dropoffDestinationSelect.innerHTML = '<option value="">Selecciona destino</option>';
+
+        data.groups.forEach(group => {
+          const pickupGroup = document.createElement('optgroup');
+          pickupGroup.label = group.zone_name;
+
+          const dropoffGroup = document.createElement('optgroup');
+          dropoffGroup.label = group.zone_name;
+
+          group.destinations.forEach(destination => {
+            const pickupOption = document.createElement('option');
+            pickupOption.value = destination.id;
+            pickupOption.textContent = destination.name;
+            pickupOption.dataset.zoneId = group.zone_id;
+            pickupOption.dataset.zoneName = group.zone_name;
+            pickupOption.dataset.duration = destination.duration_text || '';
+            pickupGroup.appendChild(pickupOption);
+
+            const dropoffOption = document.createElement('option');
+            dropoffOption.value = destination.id;
+            dropoffOption.textContent = destination.name;
+            dropoffOption.dataset.zoneId = group.zone_id;
+            dropoffOption.dataset.zoneName = group.zone_name;
+            dropoffOption.dataset.duration = destination.duration_text || '';
+            dropoffGroup.appendChild(dropoffOption);
+          });
+
+          pickupDestinationSelect.appendChild(pickupGroup);
+          dropoffDestinationSelect.appendChild(dropoffGroup);
         });
       } catch (error) {
-        hotelSelect.innerHTML = '<option value="">Error cargando hoteles</option>';
+        pickupDestinationSelect.innerHTML = '<option value="">Error cargando lugares</option>';
+        dropoffDestinationSelect.innerHTML = '<option value="">Error cargando destinos</option>';
       }
     }
 
-    async function getPrice() {
-      const zone_id = zoneSelect.value;
-      const vehicle_id = vehicleSelect.value;
-      const type = tripTypeSelect.value;
+    async function loadVehicles() {
+      try {
+        const res = await fetch(`${API_BASE}/vehicles`);
+        const data = await res.json();
 
-      if (!zone_id || !vehicle_id || !type) {
-        priceText.textContent = '$0.00';
+        if (!data.ok) {
+          vehicleSelect.innerHTML = '<option value="">No se pudieron cargar los vehículos</option>';
+          return;
+        }
+
+        vehicleSelect.innerHTML = '<option value="">Selecciona un vehículo</option>';
+
+        data.vehicles.forEach(vehicle => {
+          const option = document.createElement('option');
+          option.value = vehicle.id;
+          option.textContent = vehicle.name;
+          option.dataset.maxPassengers = vehicle.max_passengers;
+          option.dataset.image = vehicle.image || fallbackVehicleImage;
+          vehicleSelect.appendChild(option);
+        });
+      } catch (error) {
+        vehicleSelect.innerHTML = '<option value="">Error cargando vehículos</option>';
+      }
+    }
+
+    function getSelectedPickupOption() {
+      return pickupDestinationSelect.options[pickupDestinationSelect.selectedIndex] || null;
+    }
+
+    function getSelectedDropoffOption() {
+      return dropoffDestinationSelect.options[dropoffDestinationSelect.selectedIndex] || null;
+    }
+
+    function getSelectedVehicleOption() {
+      return vehicleSelect.options[vehicleSelect.selectedIndex] || null;
+    }
+
+    function updateSelectedZoneFromDestination() {
+      const pickupOption = getSelectedPickupOption();
+      const dropoffOption = getSelectedDropoffOption();
+
+      if (!pickupOption || !dropoffOption || !pickupOption.dataset.zoneId || !dropoffOption.dataset.zoneId) {
+        zoneInput.value = '';
+        summaryDurationBadge.textContent = 'Duración estimada: -';
         return;
       }
 
-      try {
-        const res = await fetch(`${API_BASE}/price?zone_id=${zone_id}&vehicle_id=${vehicle_id}&type=${type}`);
-        const data = await res.json();
+      zoneInput.value = `${pickupOption.dataset.zoneId}-${dropoffOption.dataset.zoneId}`;
+      summaryDurationBadge.textContent = `Duración estimada: ${dropoffOption.dataset.duration || pickupOption.dataset.duration || '-'}`;
+    }
 
-        if (data.ok) {
-          priceText.textContent = `$${data.price}`;
-        } else {
-          priceText.textContent = '$0.00';
-        }
-      } catch (error) {
-        priceText.textContent = '$0.00';
+    function updateVehiclePreview() {
+      const option = getSelectedVehicleOption();
+
+      if (!option || !option.value) {
+        selectedVehicleImage.src = fallbackVehicleImage;
+        selectedVehicleName.textContent = 'Vehículo no seleccionado';
+        selectedVehiclePax.textContent = 'Selecciona un vehículo para ver su capacidad';
+        return;
       }
+
+      selectedVehicleImage.src = option.dataset.image || fallbackVehicleImage;
+      selectedVehicleName.textContent = option.textContent || 'Vehículo seleccionado';
+      selectedVehiclePax.textContent = `Capacidad máxima: ${option.dataset.maxPassengers || '-'} pasajeros`;
     }
 
     function updateSummary() {
-      document.getElementById('summaryZone').textContent =
-        zoneSelect.options[zoneSelect.selectedIndex]?.text || '-';
+      const pickupOption = getSelectedPickupOption();
+      const dropoffOption = getSelectedDropoffOption();
+      const vehicleOption = getSelectedVehicleOption();
 
-      document.getElementById('summaryHotel').textContent =
-        hotelSelect.options[hotelSelect.selectedIndex]?.text || '-';
+      summaryZone.textContent =
+        pickupOption?.dataset.zoneName && dropoffOption?.dataset.zoneName
+          ? `${pickupOption.dataset.zoneName} → ${dropoffOption.dataset.zoneName}`
+          : '-';
 
-      document.getElementById('summaryVehicle').textContent =
-        vehicleSelect.options[vehicleSelect.selectedIndex]?.text || '-';
+      summaryDestination.textContent =
+        pickupOption?.textContent && dropoffOption?.textContent
+          ? `${pickupOption.textContent} → ${dropoffOption.textContent}`
+          : '-';
 
-      document.getElementById('summaryType').textContent =
-        tripTypeSelect.value === 'round_trip' ? 'Ida y vuelta' : 'Una vía';
+      summaryVehicle.textContent = vehicleOption?.textContent || '-';
+      summaryType.textContent = tripTypeInput.value === 'round_trip' ? 'Ida y vuelta' : 'Una vía';
+
+      updateSelectedZoneFromDestination();
+      updateVehiclePreview();
     }
 
-    zoneSelect.addEventListener('change', async () => {
+    async function getPrice() {
+  const pickup_destination_id = pickupDestinationSelect.value;
+  const dropoff_destination_id = dropoffDestinationSelect.value;
+  const vehicle_id = vehicleSelect.value;
+  const type = tripTypeInput.value;
+
+  if (!pickup_destination_id || !dropoff_destination_id || !vehicle_id || !type) {
+    priceText.textContent = '$0.00';
+    alertBox.innerHTML = '';
+    return;
+  }
+
+  try {
+    alertBox.innerHTML = '';
+
+    const url = `${API_BASE}/price?pickup_destination_id=${pickup_destination_id}&dropoff_destination_id=${dropoff_destination_id}&vehicle_id=${vehicle_id}&type=${type}`;
+    console.log('Calculando precio con:', url);
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.log('Respuesta precio:', data);
+
+    if (data.ok) {
+      priceText.textContent = `$${Number(data.price).toFixed(2)}`;
+
+      summaryZone.textContent =
+        data.pickup?.zone_name && data.dropoff?.zone_name
+          ? `${data.pickup.zone_name} → ${data.dropoff.zone_name}`
+          : '-';
+
+      summaryDestination.textContent =
+        data.pickup?.name && data.dropoff?.name
+          ? `${data.pickup.name} → ${data.dropoff.name}`
+          : '-';
+
+      summaryDurationBadge.textContent = `Duración estimada: ${data.duration_text || '-'}`;
+    } else {
+      priceText.textContent = '$0.00';
+      console.warn('No se pudo calcular precio:', data.message);
+
+      alertBox.innerHTML = `
+        <div class="alert alert-danger">
+          ${data.message || 'No se pudo calcular el precio para esta ruta.'}
+        </div>
+      `;
+    }
+  } catch (error) {
+    console.error('Error en getPrice:', error);
+    priceText.textContent = '$0.00';
+
+    alertBox.innerHTML = `
+      <div class="alert alert-danger">
+        Error conectando con el servidor al calcular el precio.
+      </div>
+    `;
+  }
+}
+
+    function openModal() {
+      bookingDetailsModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      bookingDetailsModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function validateStepOne() {
+      const required = [
+        pickupDestinationSelect.value,
+        dropoffDestinationSelect.value,
+        document.getElementById('travel_date').value,
+        document.getElementById('travel_time').value,
+        passengersInput.value,
+        vehicleSelect.value
+      ];
+
+      return required.every(Boolean);
+    }
+
+    openBookingDetailsBtn.addEventListener('click', async () => {
       updateSummary();
-      await loadHotelsByZone(zoneSelect.value);
+      await getPrice();
+
+      if (!validateStepOne()) {
+        alertBox.innerHTML = `
+          <div class="alert alert-danger">
+            Completa recogida, destino, fecha, hora, pasajeros y vehículo antes de continuar.
+          </div>
+        `;
+        return;
+      }
+
+      alertBox.innerHTML = '';
+      openModal();
+    });
+
+    closeBookingModal.addEventListener('click', closeModal);
+    backToFormBtn.addEventListener('click', closeModal);
+
+    bookingDetailsModal.addEventListener('click', (e) => {
+      if (e.target === bookingDetailsModal) {
+        closeModal();
+      }
+    });
+
+    pickupDestinationSelect.addEventListener('change', async () => {
+      updateSummary();
       await getPrice();
     });
 
-    hotelSelect.addEventListener('change', updateSummary);
+    dropoffDestinationSelect.addEventListener('change', async () => {
+      updateSummary();
+      await getPrice();
+    });
 
     vehicleSelect.addEventListener('change', async () => {
       updateSummary();
       await getPrice();
     });
 
-    tripTypeSelect.addEventListener('change', async () => {
-      updateSummary();
-      await getPrice();
-    });
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
+    async function submitBooking() {
       const payload = {
         full_name: document.getElementById('full_name').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
-        zone_id: Number(document.getElementById('zone_id').value),
-        hotel_id: Number(document.getElementById('hotel_id').value),
+        pickup_destination_id: Number(document.getElementById('pickup_destination_id').value),
+        dropoff_destination_id: Number(document.getElementById('dropoff_destination_id').value),
         vehicle_id: Number(document.getElementById('vehicle_id').value),
         trip_type: document.getElementById('trip_type').value,
         travel_date: document.getElementById('travel_date').value,
         travel_time: document.getElementById('travel_time').value + ':00',
         passengers: Number(document.getElementById('passengers').value),
+        flight_number: document.getElementById('flight_number').value,
         notes: document.getElementById('notes').value
       };
+
+      if (!payload.full_name || !payload.phone || !payload.pickup_destination_id || !payload.dropoff_destination_id || !payload.vehicle_id) {
+        closeModal();
+        alertBox.innerHTML = `
+          <div class="alert alert-danger">
+            Faltan datos obligatorios para completar la reserva.
+          </div>
+        `;
+        return;
+      }
 
       try {
         const res = await fetch(`${API_BASE}/bookings`, {
@@ -1350,36 +1886,69 @@
         const data = await res.json();
 
         if (data.ok) {
+          closeModal();
+
           alertBox.innerHTML = `
             <div class="alert alert-success">
               Reserva creada correctamente. ID: ${data.booking.id}
             </div>
           `;
+
           form.reset();
-          hotelSelect.innerHTML = '<option value="">Selecciona un hotel</option>';
+
+          document.getElementById('full_name').value = '';
+          document.getElementById('email').value = '';
+          document.getElementById('phone').value = '';
+          document.getElementById('flight_number').value = '';
+          document.getElementById('notes').value = '';
+
+          passengersInput.value = 1;
+          oneWayCheck.checked = true;
+          roundTripCheck.checked = false;
+          tripTypeInput.value = 'one_way';
+          zoneInput.value = '';
           priceText.textContent = '$0.00';
-          document.getElementById('summaryZone').textContent = '-';
-          document.getElementById('summaryHotel').textContent = '-';
-          document.getElementById('summaryVehicle').textContent = '-';
-          document.getElementById('summaryType').textContent = '-';
+
+          summaryZone.textContent = '-';
+          summaryDestination.textContent = '-';
+          summaryVehicle.textContent = '-';
+          summaryType.textContent = '-';
+          summaryDurationBadge.textContent = 'Duración estimada: -';
+
+          selectedVehicleImage.src = fallbackVehicleImage;
+          selectedVehicleName.textContent = 'Vehículo no seleccionado';
+          selectedVehiclePax.textContent = 'Selecciona un vehículo para ver su capacidad';
+
+          pickupDestinationSelect.selectedIndex = 0;
+          dropoffDestinationSelect.selectedIndex = 0;
+          vehicleSelect.selectedIndex = 0;
         } else {
+          closeModal();
           alertBox.innerHTML = `
             <div class="alert alert-danger">
-              No se pudo crear la reserva.
+              ${data.message || 'No se pudo crear la reserva.'}
             </div>
           `;
         }
       } catch (error) {
+        closeModal();
         alertBox.innerHTML = `
           <div class="alert alert-danger">
             Error conectando con el servidor.
           </div>
         `;
       }
-    });
+    }
 
-    loadZones();
-    loadVehicles();
+    submitBookingBtn.addEventListener('click', submitBooking);
+
+    async function init() {
+      await loadDestinations();
+      await loadVehicles();
+      updateSummary();
+    }
+
+    init();
   </script>
 </body>
 </html>
