@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Bookings - Go Primun Transfer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    :root {
+      --bg: #07111f;
+      --bg-2: #0b1728;
+      --card: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f7f9fc;
+      --muted: #9dabbe;
+      --brand-blue: rgba(37, 150, 190, 1);
+      --brand-blue-2: rgba(72, 178, 216, 1);
+      --brand-blue-soft: rgba(37, 150, 190, 0.16);
+      --success: #16a34a;
+      --success-soft: rgba(22, 163, 74, 0.18);
+      --danger: #dc2626;
+      --danger-soft: rgba(220, 38, 38, 0.18);
+      --warning: #f59e0b;
+      --warning-soft: rgba(245, 158, 11, 0.18);
+      --shadow: 0 25px 70px rgba(0, 0, 0, 0.38);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --container: min(1500px, 95%);
+    }
+
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(37, 150, 190, 0.18), transparent 20%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.06), transparent 14%),
+        linear-gradient(135deg, #06101d 0%, #0a1424 45%, #0c1930 100%);
+      min-height: 100vh;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(6, 16, 29, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      width: var(--container);
+      margin: 0 auto;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-2));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 14px 30px rgba(37, 150, 190, 0.28);
+      letter-spacing: -0.03em;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .nav-btn.primary {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-2));
+      border: none;
+      box-shadow: 0 12px 25px rgba(37, 150, 190, 0.22);
+    }
+
+    .hero {
+      padding: 34px 0 20px;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    .hero-left p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 740px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: var(--brand-blue-2);
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .controls-section {
+      padding: 18px 0;
+    }
+
+    .controls-card {
+      border-radius: var(--radius-xl);
+      padding: 22px;
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      color: #eef3fb;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: white;
+      border-radius: 16px;
+      padding: 13px 14px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .field input::placeholder {
+      color: #8c9ab0;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: rgba(37, 150, 190, 0.6);
+      box-shadow: 0 0 0 4px rgba(37, 150, 190, 0.12);
+    }
+
+    .field select option {
+      color: #111827;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      border-radius: 16px;
+      transition: 0.2s ease;
+      padding: 13px 16px;
+      color: white;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-2));
+      box-shadow: 0 12px 25px rgba(37, 150, 190, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .table-section {
+      padding: 8px 0 40px;
+    }
+
+    .table-card {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .table-header h2 {
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .table-header p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .count-badge {
+      background: var(--brand-blue-soft);
+      border: 1px solid rgba(37, 150, 190, 0.32);
+      color: #c8effc;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1650px;
+    }
+
+    thead th {
+      text-align: left;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    tbody td {
+      padding: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tbody tr:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .customer-block strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .customer-block span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: capitalize;
+      border: 1px solid transparent;
+      min-width: 100px;
+    }
+
+    .status-pending {
+      background: var(--warning-soft);
+      color: #fde68a;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .status-confirmed {
+      background: var(--brand-blue-soft);
+      color: #c8effc;
+      border-color: rgba(37,150,190,0.35);
+    }
+
+    .status-completed {
+      background: var(--success-soft);
+      color: #bbf7d0;
+      border-color: rgba(22, 163, 74, 0.28);
+    }
+
+    .status-cancelled {
+      background: var(--danger-soft);
+      color: #fecaca;
+      border-color: rgba(220, 38, 38, 0.28);
+    }
+
+    .price {
+      font-weight: 900;
+      color: var(--brand-blue-2);
+      font-size: 15px;
+    }
+
+    .trip-type {
+      display: inline-flex;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      font-weight: 700;
+      color: #eef3fb;
+    }
+
+    .notes {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 13px;
+      max-width: 240px;
+      white-space: normal;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 250px;
+      margin-bottom: 10px;
+    }
+
+    .driver-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 240px;
+    }
+
+    .driver-select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: white;
+      border-radius: 12px;
+      padding: 10px 12px;
+      outline: none;
+      font-size: 13px;
+    }
+
+    .driver-select option {
+      color: #111827;
+    }
+
+    .assign-btn {
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12px;
+      transition: 0.2s ease;
+      color: white;
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    }
+
+    .assign-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .action-btn {
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12px;
+      transition: 0.2s ease;
+      color: white;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-confirm {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-2));
+    }
+
+    .btn-complete {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+    }
+
+    .btn-cancel {
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+    }
+
+    .btn-pending {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+    }
+
+    .empty-state {
+      padding: 42px 24px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .loading {
+      padding: 42px 24px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .alert {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .alert-success {
+      background: rgba(22, 163, 74, 0.15);
+      color: #bbf7d0;
+      border: 1px solid rgba(22, 163, 74, 0.28);
+    }
+
+    .alert-danger {
+      background: rgba(220, 38, 38, 0.15);
+      color: #fecaca;
+      border: 1px solid rgba(220, 38, 38, 0.28);
+    }
+
+    .footer {
+      padding: 10px 0 32px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+      }
+
+      .controls-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .controls-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-right {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-logo">GP</div>
+        <div class="brand-text">
+          <strong>Go Primun Transfer</strong>
+          <span>Panel de reservas</span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-btn" href="/index.html">Ver sitio</a>
+        <button class="nav-btn primary" id="refreshTopBtn">Actualizar</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card glass">
+        <div class="hero-left">
+          <h1>Administrador de reservas</h1>
+          <p>
+            Visualiza todas las reservas, consulta su estado, asigna conductores y actualiza cada solicitud
+            con acciones rápidas para confirmar, completar o cancelar servicios.
+          </p>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong id="totalBookings">0</strong>
+            <span>Total reservas</span>
+          </div>
+          <div class="stat">
+            <strong id="confirmedBookings">0</strong>
+            <span>Confirmadas</span>
+          </div>
+          <div class="stat">
+            <strong id="pendingBookings">0</strong>
+            <span>Pendientes</span>
+          </div>
+          <div class="stat">
+            <strong id="assignedDrivers">0</strong>
+            <span>Con conductor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="controls-section">
+    <div class="container">
+      <div class="controls-card glass">
+        <div class="controls-grid">
+          <div class="field">
+            <label for="searchInput">Buscar</label>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Buscar por nombre, email, teléfono o notas"
+            />
+          </div>
+
+          <div class="field">
+            <label for="statusFilter">Filtrar por estado</label>
+            <select id="statusFilter">
+              <option value="">Todos</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tripTypeFilter">Filtrar por viaje</label>
+            <select id="tripTypeFilter">
+              <option value="">Todos</option>
+              <option value="one_way">Una vía</option>
+              <option value="round_trip">Ida y vuelta</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sortFilter">Orden</label>
+            <select id="sortFilter">
+              <option value="desc">Más recientes</option>
+              <option value="asc">Más antiguas</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" id="refreshBtn">Actualizar</button>
+        </div>
+
+        <div id="alertBox"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="table-section">
+    <div class="container">
+      <div class="table-card glass">
+        <div class="table-header">
+          <div>
+            <h2>Listado de reservas</h2>
+            <p>Gestiona el estado y la asignación de conductores desde este panel.</p>
+          </div>
+          <div class="count-badge" id="visibleCount">0 reservas</div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Zona / Hotel</th>
+                <th>Viaje</th>
+                <th>Fecha / Hora</th>
+                <th>Pasajeros</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Conductor</th>
+                <th>Notas</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTableBody">
+              <tr>
+                <td colspan="11" class="loading">Cargando reservas...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Go Primun Transfer · Panel admin de reservas
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:3000/api';
+
+    const zoneMap = {
+      1: 'Cap Cana / Punta Cana',
+      2: 'Cabeza de Toro',
+      3: 'Bávaro',
+      4: 'Macao',
+      5: 'Uvero Alto',
+      6: 'Bayahibe',
+      7: 'La Romana',
+      8: 'Boca Chica',
+      9: 'Santo Domingo'
+    };
+
+    const vehicleMap = {
+      1: 'Suburban SUV',
+      2: 'Cadillac',
+      3: 'Mini-van',
+      4: 'Toyota 7-9',
+      5: 'Toyota-Mercedes 9-14',
+      6: 'Toyota 15-20'
+    };
+
+    const bookingsTableBody = document.getElementById('bookingsTableBody');
+    const alertBox = document.getElementById('alertBox');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const refreshTopBtn = document.getElementById('refreshTopBtn');
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    const tripTypeFilter = document.getElementById('tripTypeFilter');
+    const sortFilter = document.getElementById('sortFilter');
+
+    let allBookings = [];
+    let allDrivers = [];
+
+    function showAlert(message, type = 'success') {
+      alertBox.innerHTML = `
+        <div class="alert ${type === 'success' ? 'alert-success' : 'alert-danger'}">
+          ${message}
+        </div>
+      `;
+
+      setTimeout(() => {
+        alertBox.innerHTML = '';
+      }, 3000);
+    }
+
+    function formatPrice(price) {
+      const number = Number(price || 0);
+      return `$${number.toFixed(2)}`;
+    }
+
+    function formatTripType(type) {
+      if (type === 'round_trip') return 'Ida y vuelta';
+      return 'Una vía';
+    }
+
+    function formatDate(date) {
+      if (!date) return '-';
+      return date;
+    }
+
+    function formatTime(time) {
+      if (!time) return '-';
+      return time.slice(0, 5);
+    }
+
+    function getStatusClass(status) {
+      switch (status) {
+        case 'confirmed':
+          return 'status-confirmed';
+        case 'completed':
+          return 'status-completed';
+        case 'cancelled':
+          return 'status-cancelled';
+        default:
+          return 'status-pending';
+      }
+    }
+
+    function updateStats(bookings) {
+      const total = bookings.length;
+      const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+      const pending = bookings.filter(b => b.status === 'pending').length;
+      const assigned = bookings.filter(b => b.driver_id || b.driver).length;
+
+      document.getElementById('totalBookings').textContent = total;
+      document.getElementById('confirmedBookings').textContent = confirmed;
+      document.getElementById('pendingBookings').textContent = pending;
+      document.getElementById('assignedDrivers').textContent = assigned;
+    }
+
+    function updateVisibleCount(count) {
+      document.getElementById('visibleCount').textContent =
+        `${count} reserva${count === 1 ? '' : 's'}`;
+    }
+
+    function getFilteredBookings() {
+      const search = searchInput.value.trim().toLowerCase();
+      const status = statusFilter.value;
+      const tripType = tripTypeFilter.value;
+      const sort = sortFilter.value;
+
+      let result = [...allBookings];
+
+      if (search) {
+        result = result.filter(booking => {
+          const text = `
+            ${booking.full_name || ''}
+            ${booking.email || ''}
+            ${booking.phone || ''}
+            ${booking.notes || ''}
+            ${zoneMap[booking.zone_id] || ''}
+            ${vehicleMap[booking.vehicle_id] || ''}
+            ${booking.trip_type || ''}
+            ${booking.status || ''}
+            ${booking.hotel?.name || ''}
+            ${booking.driver?.full_name || ''}
+          `.toLowerCase();
+
+          return text.includes(search);
+        });
+      }
+
+      if (status) {
+        result = result.filter(booking => booking.status === status);
+      }
+
+      if (tripType) {
+        result = result.filter(booking => booking.trip_type === tripType);
+      }
+
+      result.sort((a, b) => {
+        if (sort === 'asc') return a.id - b.id;
+        return b.id - a.id;
+      });
+
+      return result;
+    }
+
+    function getDriverOptions(selectedDriverId) {
+      const options = allDrivers.map(driver => `
+        <option value="${driver.id}" ${Number(selectedDriverId) === Number(driver.id) ? 'selected' : ''}>
+          ${driver.full_name}
+        </option>
+      `).join('');
+
+      return `
+        <option value="">-- Seleccionar conductor --</option>
+        ${options}
+      `;
+    }
+
+    function renderBookings() {
+      const bookings = getFilteredBookings();
+      updateVisibleCount(bookings.length);
+
+      if (!bookings.length) {
+        bookingsTableBody.innerHTML = `
+          <tr>
+            <td colspan="11" class="empty-state">
+              No se encontraron reservas con los filtros actuales.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      bookingsTableBody.innerHTML = bookings.map(booking => `
+        <tr>
+          <td>#${booking.id}</td>
+
+          <td>
+            <div class="customer-block">
+              <strong>${booking.full_name || '-'}</strong>
+              <span>${booking.email || 'Sin correo'}</span>
+              <span>${booking.phone || 'Sin teléfono'}</span>
+            </div>
+          </td>
+
+          <td>
+            <div class="customer-block">
+              <strong>${zoneMap[booking.zone_id] || 'Zona no encontrada'}</strong>
+              <span>Hotel: ${booking.hotel?.name || 'No disponible'}</span>
+              <span>Vehículo: ${vehicleMap[booking.vehicle_id] || '-'}</span>
+            </div>
+          </td>
+
+          <td>
+            <span class="trip-type">${formatTripType(booking.trip_type)}</span>
+          </td>
+
+          <td>
+            <div class="customer-block">
+              <strong>${formatDate(booking.travel_date)}</strong>
+              <span>${formatTime(booking.travel_time)}</span>
+            </div>
+          </td>
+
+          <td>${booking.passengers ?? '-'}</td>
+
+          <td>
+            <span class="price">${formatPrice(booking.price)}</span>
+          </td>
+
+          <td>
+            <span class="status-badge ${getStatusClass(booking.status)}">
+              ${booking.status || 'pending'}
+            </span>
+          </td>
+
+          <td>
+            <div class="driver-actions">
+              <div class="customer-block">
+                <strong>${booking.driver?.full_name || 'Sin asignar'}</strong>
+              </div>
+
+              <select class="driver-select" id="driver-${booking.id}">
+                ${getDriverOptions(booking.driver_id || booking.driver?.id)}
+              </select>
+
+              <button class="assign-btn" onclick="assignDriver(${booking.id})">
+                Asignar conductor
+              </button>
+            </div>
+          </td>
+
+          <td>
+            <div class="notes">${booking.notes || 'Sin notas'}</div>
+          </td>
+
+          <td>
+            <div class="actions">
+              <button class="action-btn btn-confirm" onclick="updateBookingStatus(${booking.id}, 'confirmed')">
+                Confirmar
+              </button>
+              <button class="action-btn btn-complete" onclick="updateBookingStatus(${booking.id}, 'completed')">
+                Completar
+              </button>
+              <button class="action-btn btn-cancel" onclick="updateBookingStatus(${booking.id}, 'cancelled')">
+                Cancelar
+              </button>
+              <button class="action-btn btn-pending" onclick="updateBookingStatus(${booking.id}, 'pending')">
+                Pendiente
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadDrivers() {
+      try {
+        const res = await fetch(`${API_BASE}/drivers`);
+        const data = await res.json();
+
+        if (!data.ok) {
+          throw new Error(data.message || 'No se pudieron obtener los conductores');
+        }
+
+        allDrivers = data.drivers || [];
+      } catch (error) {
+        console.error('Error cargando conductores:', error);
+        allDrivers = [];
+        showAlert('Error cargando conductores', 'danger');
+      }
+    }
+
+    async function loadBookings() {
+      bookingsTableBody.innerHTML = `
+        <tr>
+          <td colspan="11" class="loading">Cargando reservas...</td>
+        </tr>
+      `;
+
+      try {
+        const res = await fetch(`${API_BASE}/bookings`);
+        const data = await res.json();
+
+        if (!data.ok) {
+          throw new Error(data.message || 'No se pudieron obtener las reservas');
+        }
+
+        allBookings = data.bookings || [];
+        updateStats(allBookings);
+        renderBookings();
+      } catch (error) {
+        bookingsTableBody.innerHTML = `
+          <tr>
+            <td colspan="11" class="empty-state">
+              Error cargando reservas.
+            </td>
+          </tr>
+        `;
+        showAlert('Error cargando reservas', 'danger');
+      }
+    }
+
+    async function updateBookingStatus(id, status) {
+      try {
+        const res = await fetch(`${API_BASE}/bookings/${id}/status`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status })
+        });
+
+        const data = await res.json();
+
+        if (!data.ok) {
+          throw new Error(data.message || 'No se pudo actualizar el estado');
+        }
+
+        showAlert(`Reserva #${id} actualizada a "${status}"`, 'success');
+        await loadBookings();
+      } catch (error) {
+        showAlert(error.message || 'Error actualizando estado', 'danger');
+      }
+    }
+
+    async function assignDriver(bookingId) {
+      try {
+        const select = document.getElementById(`driver-${bookingId}`);
+        const driver_id = select.value;
+
+        if (!driver_id) {
+          showAlert('Selecciona un conductor', 'danger');
+          return;
+        }
+
+        const res = await fetch(`${API_BASE}/bookings/${bookingId}/assign-driver`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ driver_id })
+        });
+
+        const data = await res.json();
+
+        if (!data.ok) {
+          throw new Error(data.message || 'No se pudo asignar el conductor');
+        }
+
+        showAlert(`Conductor asignado correctamente a la reserva #${bookingId}`, 'success');
+        await loadBookings();
+      } catch (error) {
+        showAlert(error.message || 'Error asignando conductor', 'danger');
+      }
+    }
+
+    async function init() {
+      await loadDrivers();
+      await loadBookings();
+    }
+
+    refreshBtn.addEventListener('click', init);
+    refreshTopBtn.addEventListener('click', init);
+    searchInput.addEventListener('input', renderBookings);
+    statusFilter.addEventListener('change', renderBookings);
+    tripTypeFilter.addEventListener('change', renderBookings);
+    sortFilter.addEventListener('change', renderBookings);
+
+    window.updateBookingStatus = updateBookingStatus;
+    window.assignDriver = assignDriver;
+
+    init();
+  </script>
+</body>
+</html>
