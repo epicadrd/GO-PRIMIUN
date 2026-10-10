@@ -298,7 +298,9 @@ function renderSlots(
       new Date(
         `2000-01-01T${time}:00`
       ).toLocaleTimeString(
-        'es-DO',
+        document.documentElement.lang === 'en'
+          ? 'en-US'
+          : 'es-DO',
         {
           hour: 'numeric',
           minute: '2-digit'
@@ -1542,6 +1544,7 @@ async function loadPayPalSdk() {
         'https://www.paypal.com/sdk/js' +
         `?client-id=${encodeURIComponent(config.clientId)}` +
         `&currency=${encodeURIComponent(config.currency)}` +
+        `&locale=${document.documentElement.lang === 'en' ? 'en_US' : 'es_DO'}` +
         '&intent=capture' +
         '&components=buttons,funding-eligibility' +
         '&enable-funding=card';

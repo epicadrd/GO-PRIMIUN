@@ -40,9 +40,17 @@
     rel="stylesheet"
     href="/css/styles.css"
   >
+
+  <link rel="shortcut icon" href="/img/logo.jpeg" type="image/x-icon">
 </head>
 
 <body>
+  <div class="language-loading" id="languageLoading" hidden aria-live="polite" aria-busy="true">
+    <div class="language-loading-card">
+      <span class="language-loading-spinner" aria-hidden="true"></span>
+      <p id="languageLoadingText">Cambiando idioma...</p>
+    </div>
+  </div>
   <nav
     class="navbar"
     data-aos="fade-down"
@@ -50,9 +58,11 @@
   >
     <div class="nav-inner">
       <div class="brand">
-        <div class="brand-logo">
-          GPT
-        </div>
+        <img
+  class="brand-logo"
+  src="/img/logo.jpeg"
+  alt="Go Premium Transfer"
+>
 
         <div class="brand-text">
           <strong>
@@ -89,6 +99,14 @@
       >
         Reservar ahora
       </a>
+
+      <label class="language-control" for="languageSelect">
+        <span class="language-control-label">Idioma</span>
+        <select class="language-toggle" id="languageSelect" aria-label="Seleccionar idioma / Select language">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+      </label>
     </div>
   </nav>
 
@@ -106,8 +124,8 @@
 
           <h1 class="hero-title">
             Tu traslado privado en Punta Cana,
-            <span>cómodo</span>,
-            seguro y puntual
+            <span>seguro</span>,
+            confortable y a tiempo.
           </h1>
 
           <p class="hero-desc">
@@ -188,7 +206,7 @@
           <div class="vehicle-showcase">
             <div class="vehicle-icon">
               <img
-                src="/img/TAHOE.png"
+                src="/img/PERFIL DE CARRO.png"
                 alt="Vehículo Tahoe"
               >
             </div>
@@ -1079,6 +1097,7 @@
     });
   </script>
 
+  <script src="/js/i18n.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>
